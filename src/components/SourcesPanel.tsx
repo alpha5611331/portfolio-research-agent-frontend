@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { useResearchStore } from '@/store/useResearchStore'
 

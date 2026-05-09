@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useEffect, useRef } from 'react'
 import { useResearchStore } from '@/store/useResearchStore'
 import { submitResearch, openWebSocket } from '@/lib/api'
