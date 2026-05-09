@@ -1,5 +1,5 @@
-import { create } from 'zustand'
-import type { WSEvent, Source, AgentName, AgentStatus, SessionSummary } from '@/types/events'
+import { create } from "zustand"
+import type { WSEvent, Source, AgentName, AgentStatus, SessionSummary } from "@/types/events"
 
 interface ResearchStore {
   sessionId: string | null
@@ -21,16 +21,16 @@ interface ResearchStore {
 }
 
 const DEFAULT_STATUSES: Record<AgentName, AgentStatus> = {
-  planner: 'idle',
-  researcher: 'idle',
-  summarizer: 'idle',
-  synthesizer: 'idle',
-  orchestrator: 'idle',
+  planner: "idle",
+  researcher: "idle",
+  summarizer: "idle",
+  synthesizer: "idle",
+  orchestrator: "idle",
 }
 
 export const useResearchStore = create<ResearchStore>((set, get) => ({
   sessionId: null,
-  query: '',
+  query: "",
   events: [],
   subtopics: [],
   sources: {},
@@ -58,41 +58,41 @@ export const useResearchStore = create<ResearchStore>((set, get) => ({
     const { setAgentStatus } = get()
 
     switch (e.event) {
-      case 'PLAN_CREATED': {
+      case "PLAN_CREATED": {
         const subtopics = (e.data.subtopics as string[]) ?? []
         set({ subtopics })
-        setAgentStatus('planner', 'done')
-        setAgentStatus('researcher', 'active')
+        setAgentStatus("planner", "done")
+        setAgentStatus("researcher", "active")
         break
       }
-      case 'SOURCES_COLLECTED': {
-        const subtopic = e.subtopic ?? 'general'
+      case "SOURCES_COLLECTED": {
+        const subtopic = e.subtopic ?? "general"
         const sources = (e.data.sources as Source[]) ?? []
         set((state) => ({
           sources: { ...state.sources, [subtopic]: sources },
         }))
         break
       }
-      case 'SUMMARY_DONE':
-        setAgentStatus('summarizer', 'active')
+      case "SUMMARY_DONE":
+        setAgentStatus("summarizer", "active")
         break
-      case 'REPORT_CHUNK': {
-        const chunk = (e.data.chunk as string) ?? ''
+      case "REPORT_CHUNK": {
+        const chunk = (e.data.chunk as string) ?? ""
         set((state) => ({ reportChunks: [...state.reportChunks, chunk] }))
-        setAgentStatus('synthesizer', 'active')
+        setAgentStatus("synthesizer", "active")
         break
       }
-      case 'REPORT_DONE': {
-        const report = (e.data.report as string) ?? ''
+      case "REPORT_DONE": {
+        const report = (e.data.report as string) ?? ""
         set((state) => ({
           reportChunks: state.reportChunks.length === 0 && report ? [report] : state.reportChunks,
           isRunning: false,
         }))
-        setAgentStatus('synthesizer', 'done')
+        setAgentStatus("synthesizer", "done")
         break
       }
-      case 'ERROR':
-        setAgentStatus(e.agent, 'error')
+      case "ERROR":
+        setAgentStatus(e.agent, "error")
         set({ isRunning: false })
         break
     }

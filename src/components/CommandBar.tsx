@@ -1,17 +1,17 @@
-'use client'
+"use client"
 
-import { useState, useEffect, useRef } from 'react'
-import { useResearchStore } from '@/store/useResearchStore'
-import { submitResearch, openWebSocket } from '@/lib/api'
-import type { WSEvent } from '@/types/events'
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
+import { useState, useEffect, useRef } from "react"
+import { useResearchStore } from "@/store/useResearchStore"
+import { submitResearch, openWebSocket } from "@/lib/api"
+import type { WSEvent } from "@/types/events"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 
 const PLACEHOLDERS = [
-  'What is the future of AI agents in healthcare?',
-  'How is quantum computing changing cryptography?',
-  'What are the economic impacts of renewable energy adoption?',
-  'How do large language models reason about code?',
+  "What is the future of AI agents in healthcare?",
+  "How is quantum computing changing cryptography?",
+  "What are the economic impacts of renewable energy adoption?",
+  "How do large language models reason about code?",
 ]
 
 export default function CommandBar() {
@@ -43,14 +43,14 @@ export default function CommandBar() {
       })
       wsRef.current = ws
     } catch {
-      setError('Failed to connect. Is the backend running?')
+      setError("Failed to connect. Is the backend running?")
     }
   }
 
   return (
     <form onSubmit={handleSubmit} className="w-full">
-      <div className="relative flex items-center rounded-lg border border-indigo-500/30 bg-black/40 backdrop-blur-sm focus-within:border-indigo-400/60 transition-colors">
-        <span className="pl-4 text-indigo-400 font-mono text-sm select-none">▶</span>
+      <div className="relative flex items-center rounded-lg border border-indigo-500/30 bg-black/40 backdrop-blur-sm transition-colors focus-within:border-indigo-400/60">
+        <span className="pl-4 font-mono text-sm text-indigo-400 select-none">▶</span>
         <Input
           type="text"
           value={query}
@@ -59,16 +59,11 @@ export default function CommandBar() {
           disabled={isRunning}
           className="flex-1 px-3 py-4"
         />
-        <Button
-          type="submit"
-          disabled={isRunning || !query.trim()}
-          size="sm"
-          className="mr-2"
-        >
-          {isRunning ? 'RESEARCHING...' : 'RESEARCH ▶'}
+        <Button type="submit" disabled={isRunning || !query.trim()} size="sm" className="mr-2">
+          {isRunning ? "RESEARCHING..." : "RESEARCH ▶"}
         </Button>
       </div>
-      {error && <p className="mt-2 text-red-400 font-mono text-xs">{error}</p>}
+      {error && <p className="mt-2 font-mono text-xs text-red-400">{error}</p>}
     </form>
   )
 }

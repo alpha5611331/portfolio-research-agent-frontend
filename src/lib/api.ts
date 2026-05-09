@@ -1,12 +1,12 @@
-const WS = process.env.NEXT_PUBLIC_WS_URL ?? 'ws://localhost:8000'
+const WS = process.env.NEXT_PUBLIC_WS_URL ?? "ws://localhost:8000"
 
 export async function submitResearch(query: string) {
-  const res = await fetch('/api/research', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+  const res = await fetch("/api/research", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ query }),
   })
-  if (!res.ok) throw new Error('Failed to start research')
+  if (!res.ok) throw new Error("Failed to start research")
   return res.json() as Promise<{ session_id: string }>
 }
 
@@ -23,11 +23,11 @@ export function openWebSocket(sessionId: string, onMessage: (data: unknown) => v
 }
 
 export async function fetchSessions() {
-  const res = await fetch('/api/sessions')
+  const res = await fetch("/api/sessions")
   if (!res.ok) return []
   return res.json()
 }
 
 export async function deleteSession(id: string) {
-  await fetch(`/api/sessions/${id}`, { method: 'DELETE' })
+  await fetch(`/api/sessions/${id}`, { method: "DELETE" })
 }

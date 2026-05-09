@@ -4,15 +4,15 @@ React + Vite frontend for the [AI Research Command Center](https://github.com/al
 
 ## Stack
 
-| Layer | Technology |
-|---|---|
-| Framework | React 19 + Vite |
-| Language | TypeScript |
-| Styling | Tailwind CSS v4 |
-| Animations | Framer Motion |
-| State | Zustand |
-| Markdown | react-markdown + remark-gfm |
-| Dates | date-fns |
+| Layer      | Technology                  |
+| ---------- | --------------------------- |
+| Framework  | React 19 + Vite             |
+| Language   | TypeScript                  |
+| Styling    | Tailwind CSS v4             |
+| Animations | Framer Motion               |
+| State      | Zustand                     |
+| Markdown   | react-markdown + remark-gfm |
+| Dates      | date-fns                    |
 
 ## Prerequisites
 
@@ -60,16 +60,16 @@ pnpm preview    # preview production build
 
 ## Components
 
-| Component | Description |
-|---|---|
-| `CommandBar` | Full-width query input with animated placeholder |
-| `ProviderSelector` | OpenAI / Groq + model picker |
-| `AgentTraceTree` | Animated tree: idle → active → done → error per node |
-| `LogStream` | Auto-scrolling terminal log, color-coded by event type |
-| `SourcesPanel` | Tabbed by subtopic, source cards with domain badge and score |
-| `ReportViewer` | Streaming markdown renderer, serif font, section anchors |
-| `SessionDrawer` | Slide-up list of past sessions from `/api/sessions` |
-| `StatusBar` | Current agent, token count, latency |
+| Component          | Description                                                  |
+| ------------------ | ------------------------------------------------------------ |
+| `CommandBar`       | Full-width query input with animated placeholder             |
+| `ProviderSelector` | OpenAI / Groq + model picker                                 |
+| `AgentTraceTree`   | Animated tree: idle → active → done → error per node         |
+| `LogStream`        | Auto-scrolling terminal log, color-coded by event type       |
+| `SourcesPanel`     | Tabbed by subtopic, source cards with domain badge and score |
+| `ReportViewer`     | Streaming markdown renderer, serif font, section anchors     |
+| `SessionDrawer`    | Slide-up list of past sessions from `/api/sessions`          |
+| `StatusBar`        | Current agent, token count, latency                          |
 
 ## State
 
