@@ -19,12 +19,12 @@ export default function SourcesPanel() {
 
   return (
     <div className="h-full flex flex-col gap-2">
-      <div className="flex gap-1 overflow-x-auto pb-1">
+      <div className="flex flex-wrap gap-1 pb-1">
         {tabs.map((t, i) => (
           <button
             key={i}
             onClick={() => setActiveTab(i)}
-            className={`shrink-0 px-2 py-1 rounded font-mono text-[10px] transition-colors ${
+            className={`px-2 py-1 rounded font-mono text-[10px] transition-colors ${
               i === activeTab
                 ? 'bg-indigo-600/30 border border-indigo-500/50 text-indigo-300'
                 : 'border border-zinc-800 text-zinc-600 hover:border-zinc-600'

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useResearchStore } from '@/store/useResearchStore'
 import CommandBar from '@/components/CommandBar'
 import AgentTraceTree from '@/components/AgentTraceTree'
@@ -10,7 +10,16 @@ import StatusBar from '@/components/StatusBar'
 
 export default function App() {
   const hasReport = useResearchStore((s) => s.reportChunks.length > 0)
+  const isRunning = useResearchStore((s) => s.isRunning)
   const [reportOpen, setReportOpen] = useState(false)
+  const prevRunning = useRef(false)
+
+  useEffect(() => {
+    if (prevRunning.current && !isRunning && hasReport) {
+      setReportOpen(true)
+    }
+    prevRunning.current = isRunning
+  }, [isRunning, hasReport])
 
   return (
     <div className="grid-bg h-screen overflow-hidden flex flex-col" style={{ fontFamily: 'var(--font-mono)' }}>

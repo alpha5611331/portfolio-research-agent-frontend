@@ -9,6 +9,7 @@ export default function SessionDrawer() {
   const [open, setOpen] = useState(false)
   const [sessions, setSessions] = useState<SessionSummary[]>([])
   const setQuery = useResearchStore((s) => s.setQuery)
+  const reset = useResearchStore((s) => s.reset)
 
   async function load() {
     const data = await fetchSessions()
@@ -70,7 +71,7 @@ export default function SessionDrawer() {
                 {sessions.map((s) => (
                   <div
                     key={s.session_id}
-                    onClick={() => { setQuery(s.query); setOpen(false) }}
+                    onClick={() => { reset(); setQuery(s.query); setOpen(false) }}
                     className="flex items-center justify-between px-4 py-2.5 hover:bg-zinc-900 cursor-pointer transition-colors"
                   >
                     <div className="min-w-0">
