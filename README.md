@@ -1,4 +1,4 @@
-# Research Agent — Frontend
+# Research Agent - Frontend
 
 Next.js frontend for the [AI Research Command Center](https://github.com/vectorleap-pulse/portfolio-research-agent).
 
