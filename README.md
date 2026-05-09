@@ -1,6 +1,6 @@
-# Research Agent — Frontend
+# Research Agent - Frontend
 
-React + Vite frontend for the [AI Research Command Center](https://github.com/alpha5611331/portfolio-research-agent).
+Next.js frontend for the [AI Research Command Center](https://github.com/vectorleap-pulse/portfolio-research-agent).
 
 ![Demo](images/demo.gif)
 
@@ -8,17 +8,18 @@ React + Vite frontend for the [AI Research Command Center](https://github.com/al
 
 |                 | Link                                                                                                |
 | --------------- | --------------------------------------------------------------------------------------------------- |
-| Main            | [portfolio-research-agent](https://github.com/alpha5611331/portfolio-research-agent)                   |
-| Backend         | [portfolio-research-agent-backend](https://github.com/alpha5611331/portfolio-research-agent-backend)   |
-| Frontend (this) | [portfolio-research-agent-frontend](https://github.com/alpha5611331/portfolio-research-agent-frontend) |
+| Main            | [portfolio-research-agent](https://github.com/vectorleap-pulse/portfolio-research-agent)                   |
+| Backend         | [portfolio-research-agent-backend](https://github.com/vectorleap-pulse/portfolio-research-agent-backend)   |
+| Frontend (this) | [portfolio-research-agent-frontend](https://github.com/vectorleap-pulse/portfolio-research-agent-frontend) |
 
 ## Stack
 
 | Layer      | Technology                  |
 | ---------- | --------------------------- |
-| Framework  | React 19 + Vite             |
+| Framework  | Next.js 16 + React 19       |
 | Language   | TypeScript                  |
 | Styling    | Tailwind CSS v4             |
+| UI         | Radix UI + Lucide React     |
 | Animations | Framer Motion               |
 | State      | Zustand                     |
 | Markdown   | react-markdown + remark-gfm |
