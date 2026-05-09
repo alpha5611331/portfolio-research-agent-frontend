@@ -69,7 +69,7 @@ pnpm preview    # preview production build
 | `SourcesPanel` | Tabbed by subtopic, source cards with domain badge and score |
 | `ReportViewer` | Streaming markdown renderer, serif font, section anchors |
 | `SessionDrawer` | Slide-up list of past sessions from `/api/sessions` |
-| `StatusBar` | Current agent, token count, latency, Qdrant hit count |
+| `StatusBar` | Current agent, token count, latency |
 
 ## State
 

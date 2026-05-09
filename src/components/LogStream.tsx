@@ -10,7 +10,6 @@ import { Badge } from '@/components/ui/badge'
 const EVENT_COLOR: Record<EventType, string> = {
   PLAN_CREATED: 'text-cyan-400',
   SEARCH_DONE: 'text-blue-400',
-  RAG_DONE: 'text-violet-400',
   SOURCES_COLLECTED: 'text-green-400',
   SUMMARY_CHUNK: 'text-yellow-400',
   SUMMARY_DONE: 'text-yellow-300',
@@ -25,8 +24,6 @@ function eventLabel(event: EventType, data: Record<string, unknown>, subtopic?: 
       return `Plan created — ${(data.subtopics as string[])?.length ?? 0} subtopics`
     case 'SEARCH_DONE':
       return `Web search complete${subtopic ? ` · ${subtopic}` : ''}`
-    case 'RAG_DONE':
-      return `Vector search complete${subtopic ? ` · ${subtopic}` : ''}`
     case 'SOURCES_COLLECTED':
       return `Sources collected${subtopic ? ` · ${subtopic}` : ''} — ${data.count ?? 0} results`
     case 'SUMMARY_CHUNK':
@@ -70,10 +67,6 @@ function EventDetail({ e }: { e: WSEvent }) {
           {count != null && <span className="ml-2">{count} results</span>}
         </p>
       )
-    }
-    case 'RAG_DONE': {
-      const count = (e.data.docs_count ?? e.data.count) as number | undefined
-      return count != null ? <p>{count} docs retrieved</p> : null
     }
     case 'SOURCES_COLLECTED': {
       const sources = (e.data.sources as Array<{ title: string; url: string }>) ?? []

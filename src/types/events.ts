@@ -1,7 +1,6 @@
 export type EventType =
   | 'PLAN_CREATED'
   | 'SEARCH_DONE'
-  | 'RAG_DONE'
   | 'SOURCES_COLLECTED'
   | 'SUMMARY_CHUNK'
   | 'SUMMARY_DONE'
@@ -26,7 +25,7 @@ export interface Source {
   title: string
   snippet: string
   score: number
-  source?: 'tavily' | 'qdrant'
+  source?: 'tavily'
 }
 
 export interface SessionSummary {
