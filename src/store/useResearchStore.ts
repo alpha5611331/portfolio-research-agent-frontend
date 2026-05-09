@@ -82,10 +82,15 @@ export const useResearchStore = create<ResearchStore>((set, get) => ({
         setAgentStatus('synthesizer', 'active')
         break
       }
-      case 'REPORT_DONE':
+      case 'REPORT_DONE': {
+        const report = (e.data.report as string) ?? ''
+        set((state) => ({
+          reportChunks: state.reportChunks.length === 0 && report ? [report] : state.reportChunks,
+          isRunning: false,
+        }))
         setAgentStatus('synthesizer', 'done')
-        set({ isRunning: false })
         break
+      }
       case 'ERROR':
         setAgentStatus(e.agent, 'error')
         set({ isRunning: false })
