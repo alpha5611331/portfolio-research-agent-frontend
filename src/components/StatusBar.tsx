@@ -1,6 +1,7 @@
 'use client'
 
 import { useResearchStore } from '@/store/useResearchStore'
+import { Badge } from '@/components/ui/badge'
 
 export default function StatusBar() {
   const { agentStatuses, events, sources, isRunning } = useResearchStore()
@@ -11,9 +12,9 @@ export default function StatusBar() {
 
   return (
     <div className="flex items-center gap-4 font-mono text-[10px] text-zinc-600">
-      <span className={isRunning ? 'text-indigo-400' : 'text-zinc-700'}>
+      <Badge variant={isRunning ? 'indigo' : 'ghost'}>
         {isRunning ? `● ${activeAgent ?? 'running'}` : '○ idle'}
-      </span>
+      </Badge>
       <span>{eventCount} events</span>
       <span>{sourceCount} sources</span>
       <span className="ml-auto text-zinc-800">Research Command Center</span>

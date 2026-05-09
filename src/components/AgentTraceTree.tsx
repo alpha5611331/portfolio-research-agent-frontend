@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { useResearchStore } from '@/store/useResearchStore'
 import type { AgentName, AgentStatus } from '@/types/events'
+import { Badge } from '@/components/ui/badge'
 
 const AGENTS: { name: AgentName; label: string; indent?: boolean }[] = [
   { name: 'planner', label: 'Planner' },
@@ -11,11 +12,18 @@ const AGENTS: { name: AgentName; label: string; indent?: boolean }[] = [
   { name: 'synthesizer', label: 'Synthesizer' },
 ]
 
-const STATUS_COLOR: Record<AgentStatus, string> = {
+const STATUS_DOT: Record<AgentStatus, string> = {
   idle: 'bg-zinc-700',
   active: 'bg-indigo-500',
   done: 'bg-cyan-500',
   error: 'bg-red-500',
+}
+
+const BADGE_VARIANT: Record<AgentStatus, 'ghost' | 'indigo' | 'cyan' | 'red' | 'default'> = {
+  idle: 'ghost',
+  active: 'indigo',
+  done: 'cyan',
+  error: 'red',
 }
 
 const STATUS_ICON: Record<AgentStatus, string> = {
@@ -41,13 +49,13 @@ export default function AgentTraceTree() {
             transition={{ duration: 0.3 }}
           >
             <motion.span
-              className={`w-2 h-2 rounded-full ${STATUS_COLOR[status]}`}
+              className={`w-2 h-2 rounded-full shrink-0 ${STATUS_DOT[status]}`}
               animate={status === 'active' ? { scale: [1, 1.4, 1] } : { scale: 1 }}
               transition={{ repeat: Infinity, duration: 1 }}
             />
-            <span className={status === 'active' ? 'text-indigo-300' : 'text-zinc-400'}>
+            <Badge variant={BADGE_VARIANT[status]}>
               {STATUS_ICON[status]} {label}
-            </span>
+            </Badge>
           </motion.div>
         )
       })}
@@ -55,9 +63,9 @@ export default function AgentTraceTree() {
         <div className="mt-3 ml-4 space-y-1">
           <p className="text-zinc-600 text-[10px] uppercase tracking-widest">Subtopics</p>
           {subtopics.map((st, i) => (
-            <div key={i} className="text-zinc-500 text-[10px] truncate">
+            <Badge key={i} variant="ghost" className="block truncate text-[10px]">
               · {st}
-            </div>
+            </Badge>
           ))}
         </div>
       )}

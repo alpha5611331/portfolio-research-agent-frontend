@@ -4,6 +4,7 @@ import { useResearchStore } from '@/store/useResearchStore'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Button, buttonVariants } from '@/components/ui/button'
 
 export default function ReportViewer() {
   const { reportChunks, events } = useResearchStore()
@@ -27,16 +28,17 @@ export default function ReportViewer() {
       >
         {isDone && (
           <div className="flex gap-3 mb-4 pb-4 border-b border-zinc-800">
-            <button
+            <Button
+              variant="outline"
+              size="sm"
               onClick={() => navigator.clipboard.writeText(report)}
-              className="font-mono text-xs text-zinc-500 hover:text-zinc-300 border border-zinc-800 hover:border-zinc-600 px-3 py-1.5 rounded transition-colors"
             >
               Copy
-            </button>
+            </Button>
             <a
               href={`data:text/markdown;charset=utf-8,${encodeURIComponent(report)}`}
               download="research-report.md"
-              className="font-mono text-xs text-zinc-500 hover:text-zinc-300 border border-zinc-800 hover:border-zinc-600 px-3 py-1.5 rounded transition-colors"
+              className={buttonVariants({ variant: 'outline', size: 'sm' })}
             >
               Export MD
             </a>

@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from 'react'
 import { useResearchStore } from '@/store/useResearchStore'
 import { submitResearch, openWebSocket } from '@/lib/api'
 import type { WSEvent } from '@/types/events'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 
 const PLACEHOLDERS = [
   'What is the future of AI agents in healthcare?',
@@ -36,7 +38,6 @@ export default function CommandBar() {
     try {
       const { session_id } = await submitResearch(query)
       startSession(session_id, query)
-
       const ws = openWebSocket(session_id, (data) => {
         addEvent(data as WSEvent)
       })
@@ -50,21 +51,22 @@ export default function CommandBar() {
     <form onSubmit={handleSubmit} className="w-full">
       <div className="relative flex items-center rounded-lg border border-indigo-500/30 bg-black/40 backdrop-blur-sm focus-within:border-indigo-400/60 transition-colors">
         <span className="pl-4 text-indigo-400 font-mono text-sm select-none">▶</span>
-        <input
+        <Input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={placeholder}
           disabled={isRunning}
-          className="flex-1 bg-transparent px-3 py-4 text-white placeholder-zinc-600 font-mono text-sm outline-none disabled:opacity-50"
+          className="flex-1 px-3 py-4"
         />
-        <button
+        <Button
           type="submit"
           disabled={isRunning || !query.trim()}
-          className="mr-2 px-4 py-2 rounded bg-indigo-600 hover:bg-indigo-500 disabled:opacity-40 disabled:cursor-not-allowed text-white font-mono text-xs transition-colors"
+          size="sm"
+          className="mr-2"
         >
           {isRunning ? 'RESEARCHING...' : 'RESEARCH ▶'}
-        </button>
+        </Button>
       </div>
       {error && <p className="mt-2 text-red-400 font-mono text-xs">{error}</p>}
     </form>

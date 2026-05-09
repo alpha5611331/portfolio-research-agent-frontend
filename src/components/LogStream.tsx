@@ -4,6 +4,8 @@ import { useEffect, useRef } from 'react'
 import { format } from 'date-fns'
 import { useResearchStore } from '@/store/useResearchStore'
 import type { EventType, WSEvent } from '@/types/events'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { Badge } from '@/components/ui/badge'
 
 const EVENT_COLOR: Record<EventType, string> = {
   PLAN_CREATED: 'text-cyan-400',
@@ -130,27 +132,27 @@ export default function LogStream() {
   const filtered = events.filter((e) => e.event !== 'REPORT_CHUNK')
 
   return (
-    <div className="h-full overflow-y-auto font-mono text-xs pr-1 divide-y divide-zinc-800/30">
-      {filtered.map((e, i) => (
-        <div key={i} className="flex gap-2 items-start py-1.5">
-          <span className="text-zinc-600 shrink-0 pt-0.5">
-            {format(new Date(e.timestamp), 'HH:mm:ss')}
-          </span>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2">
-              <span className={`${EVENT_COLOR[e.event]} shrink-0`}>●</span>
-              <span className="text-zinc-200">{eventLabel(e.event, e.data, e.subtopic)}</span>
-              <span className="ml-auto shrink-0 text-[9px] px-1.5 py-0.5 rounded bg-zinc-800/70 text-zinc-500">
-                {e.agent}
-              </span>
-            </div>
-            <div className="mt-0.5 ml-3.5 text-[10px] text-zinc-500 leading-relaxed">
-              <EventDetail e={e} />
+    <ScrollArea className="h-full">
+      <div className="font-mono text-xs pr-2 divide-y divide-zinc-800/30">
+        {filtered.map((e, i) => (
+          <div key={i} className="flex gap-2 items-start py-1.5">
+            <span className="text-zinc-600 shrink-0 pt-0.5">
+              {format(new Date(e.timestamp), 'HH:mm:ss')}
+            </span>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2">
+                <span className={`${EVENT_COLOR[e.event]} shrink-0`}>●</span>
+                <span className="text-zinc-200">{eventLabel(e.event, e.data, e.subtopic)}</span>
+                <Badge className="ml-auto shrink-0">{e.agent}</Badge>
+              </div>
+              <div className="mt-0.5 ml-3.5 text-[10px] text-zinc-500 leading-relaxed">
+                <EventDetail e={e} />
+              </div>
             </div>
           </div>
-        </div>
-      ))}
-      <div ref={bottomRef} />
-    </div>
+        ))}
+        <div ref={bottomRef} />
+      </div>
+    </ScrollArea>
   )
 }
