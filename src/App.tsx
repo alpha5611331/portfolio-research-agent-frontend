@@ -1,28 +1,31 @@
-import { useState, useEffect, useRef } from 'react'
-import { useResearchStore } from '@/store/useResearchStore'
-import CommandBar from '@/components/CommandBar'
-import AgentTraceTree from '@/components/AgentTraceTree'
-import LogStream from '@/components/LogStream'
-import SourcesPanel from '@/components/SourcesPanel'
-import ReportViewer from '@/components/ReportViewer'
-import SessionDrawer from '@/components/SessionDrawer'
-import StatusBar from '@/components/StatusBar'
+import { useState, useEffect, useRef } from "react";
+import { useResearchStore } from "@/store/useResearchStore";
+import CommandBar from "@/components/CommandBar";
+import AgentTraceTree from "@/components/AgentTraceTree";
+import LogStream from "@/components/LogStream";
+import SourcesPanel from "@/components/SourcesPanel";
+import ReportViewer from "@/components/ReportViewer";
+import SessionDrawer from "@/components/SessionDrawer";
+import StatusBar from "@/components/StatusBar";
 
 export default function App() {
-  const hasReport = useResearchStore((s) => s.reportChunks.length > 0)
-  const isRunning = useResearchStore((s) => s.isRunning)
-  const [reportOpen, setReportOpen] = useState(false)
-  const prevRunning = useRef(false)
+  const hasReport = useResearchStore((s) => s.reportChunks.length > 0);
+  const isRunning = useResearchStore((s) => s.isRunning);
+  const [reportOpen, setReportOpen] = useState(false);
+  const prevRunning = useRef(false);
 
   useEffect(() => {
     if (prevRunning.current && !isRunning && hasReport) {
-      setReportOpen(true)
+      setReportOpen(true);
     }
-    prevRunning.current = isRunning
-  }, [isRunning, hasReport])
+    prevRunning.current = isRunning;
+  }, [isRunning, hasReport]);
 
   return (
-    <div className="grid-bg h-screen overflow-hidden flex flex-col" style={{ fontFamily: 'var(--font-mono)' }}>
+    <div
+      className="grid-bg h-screen overflow-hidden flex flex-col"
+      style={{ fontFamily: "var(--font-mono)" }}
+    >
       {/* Header */}
       <header className="shrink-0 border-b border-zinc-800/60 bg-black/30 backdrop-blur-sm px-6 py-3 flex items-center gap-3">
         <span className="text-indigo-400 text-lg">⬡</span>
@@ -54,7 +57,7 @@ export default function App() {
         </div>
 
         {/* Right: Sources */}
-        <div className="w-72 shrink-0 p-4 overflow-hidden flex flex-col">
+        <div className="w-80 shrink-0 p-4 overflow-hidden flex flex-col">
           <p className="font-mono text-[10px] text-zinc-600 uppercase tracking-widest mb-3">
             Sources
           </p>
@@ -89,7 +92,9 @@ export default function App() {
           />
           <div className="relative w-205 max-w-[90vw] max-h-[85vh] bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden flex flex-col shadow-2xl">
             <div className="shrink-0 flex items-center justify-between px-6 py-3 border-b border-zinc-800">
-              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">Research Report</span>
+              <span className="font-mono text-[10px] text-zinc-500 uppercase tracking-widest">
+                Research Report
+              </span>
               <button
                 onClick={() => setReportOpen(false)}
                 className="text-zinc-600 hover:text-zinc-300 font-mono text-sm transition-colors"
@@ -104,5 +109,5 @@ export default function App() {
         </div>
       )}
     </div>
-  )
+  );
 }
