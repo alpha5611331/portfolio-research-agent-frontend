@@ -2,12 +2,14 @@
 
 React + Vite frontend for the [AI Research Command Center](https://github.com/alpha5611331/portfolio-research-agent).
 
+![Demo](images/demo.gif)
+
 ## Repositories
 
-| | Link |
-|---|---|
-| Main | [portfolio-research-agent](https://github.com/alpha5611331/portfolio-research-agent) |
-| Backend | [portfolio-research-agent-backend](https://github.com/alpha5611331/portfolio-research-agent-backend) |
+|                 | Link                                                                                                |
+| --------------- | --------------------------------------------------------------------------------------------------- |
+| Main            | [portfolio-research-agent](https://github.com/alpha5611331/portfolio-research-agent)                   |
+| Backend         | [portfolio-research-agent-backend](https://github.com/alpha5611331/portfolio-research-agent-backend)   |
 | Frontend (this) | [portfolio-research-agent-frontend](https://github.com/alpha5611331/portfolio-research-agent-frontend) |
 
 ## Stack
@@ -68,15 +70,15 @@ pnpm preview    # preview production build
 
 ## Components
 
-| Component          | Description                                                  |
-| ------------------ | ------------------------------------------------------------ |
+| Component            | Description                                                  |
+| -------------------- | ------------------------------------------------------------ |
 | `CommandBar`       | Full-width query input with animated placeholder             |
 | `ProviderSelector` | OpenAI / Groq + model picker                                 |
-| `AgentTraceTree`   | Animated tree: idle → active → done → error per node         |
+| `AgentTraceTree`   | Animated tree: idle → active → done → error per node      |
 | `LogStream`        | Auto-scrolling terminal log, color-coded by event type       |
 | `SourcesPanel`     | Tabbed by subtopic, source cards with domain badge and score |
 | `ReportViewer`     | Streaming markdown renderer, serif font, section anchors     |
-| `SessionDrawer`    | Slide-up list of past sessions from `/api/sessions`          |
+| `SessionDrawer`    | Slide-up list of past sessions from `/api/sessions`        |
 | `StatusBar`        | Current agent, token count, latency                          |
 
 ## State
