@@ -1,36 +1,82 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Research Agent — Frontend
 
-## Getting Started
+React + Vite frontend for the [AI Research Command Center](https://github.com/alpha5611331/portfolio-research-agent-frontend).
 
-First, run the development server:
+## Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | React 19 + Vite |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| Animations | Framer Motion |
+| State | Zustand |
+| Markdown | react-markdown + remark-gfm |
+| Dates | date-fns |
+
+## Prerequisites
+
+- Node.js 20+
+- pnpm
+
+## Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+cp .env.example .env.local  # set API URL
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```env
+VITE_API_URL=http://localhost:8000
+VITE_WS_URL=ws://localhost:8000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Run
 
-## Learn More
+```bash
+pnpm dev        # dev server → http://localhost:5173
+pnpm build      # production build → dist/
+pnpm preview    # preview production build
+```
 
-To learn more about Next.js, take a look at the following resources:
+## UI Layout
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  HEADER: logo + provider selector (OpenAI / Groq) + model pick  │
+├─────────────────────────────────────────────────────────────────┤
+│  COMMAND BAR: full-width query input                            │
+├──────────────┬──────────────────────────┬───────────────────────┤
+│  AGENT TRACE │   LIVE LOG STREAM        │   SOURCES PANEL       │
+│  (left 20%)  │   (center 50%)           │   (right 30%)         │
+├──────────────┴──────────────────────────┴───────────────────────┤
+│  REPORT PANEL (expands on REPORT_DONE)                          │
+├─────────────────────────────────────────────────────────────────┤
+│  SESSION HISTORY (bottom drawer)                                │
+└─────────────────────────────────────────────────────────────────┘
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Components
 
-## Deploy on Vercel
+| Component | Description |
+|---|---|
+| `CommandBar` | Full-width query input with animated placeholder |
+| `ProviderSelector` | OpenAI / Groq + model picker |
+| `AgentTraceTree` | Animated tree: idle → active → done → error per node |
+| `LogStream` | Auto-scrolling terminal log, color-coded by event type |
+| `SourcesPanel` | Tabbed by subtopic, source cards with domain badge and score |
+| `ReportViewer` | Streaming markdown renderer, serif font, section anchors |
+| `SessionDrawer` | Slide-up list of past sessions from `/api/sessions` |
+| `StatusBar` | Current agent, token count, latency, Qdrant hit count |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## State
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Zustand store `useResearchStore` holds: `session`, `events[]`, `sources[]`, `reportChunks[]`, `agentStatuses{}`.
+
+## Lint
+
+```bash
+pnpm lint
+```
