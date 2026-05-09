@@ -1,5 +1,3 @@
-'use client'
-
 import { create } from 'zustand'
 import type { WSEvent, Source, AgentName, AgentStatus, SessionSummary } from '@/types/events'
 

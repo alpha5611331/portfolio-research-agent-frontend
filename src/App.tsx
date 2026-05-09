@@ -1,45 +1,35 @@
-'use client'
-
-import { useState } from 'react'
+import { useResearchStore } from '@/store/useResearchStore'
 import CommandBar from '@/components/CommandBar'
-import ProviderSelector from '@/components/ProviderSelector'
 import AgentTraceTree from '@/components/AgentTraceTree'
 import LogStream from '@/components/LogStream'
 import SourcesPanel from '@/components/SourcesPanel'
 import ReportViewer from '@/components/ReportViewer'
 import SessionDrawer from '@/components/SessionDrawer'
 import StatusBar from '@/components/StatusBar'
-import { useResearchStore } from '@/store/useResearchStore'
 
-export default function Home() {
-  const [provider, setProvider] = useState('openai')
-  const [model, setModel] = useState('gpt-4o-mini')
+export default function App() {
   const hasReport = useResearchStore((s) => s.reportChunks.length > 0)
 
   return (
-    <div className="grid-bg min-h-screen flex flex-col">
+    <div className="grid-bg min-h-screen flex flex-col" style={{ fontFamily: 'var(--font-mono)' }}>
       {/* Header */}
-      <header className="border-b border-zinc-800/60 bg-black/30 backdrop-blur-sm px-6 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="text-indigo-400 font-mono text-lg">⬡</span>
-          <span className="font-mono text-sm text-zinc-300 tracking-wider">
-            RESEARCH COMMAND CENTER
-          </span>
-        </div>
-        <ProviderSelector
-          provider={provider}
-          model={model}
-          onChange={(p, m) => { setProvider(p); setModel(m) }}
-        />
+      <header className="border-b border-zinc-800/60 bg-black/30 backdrop-blur-sm px-6 py-3 flex items-center gap-3">
+        <span className="text-indigo-400 text-lg">⬡</span>
+        <span className="font-mono text-sm text-zinc-300 tracking-wider">
+          RESEARCH COMMAND CENTER
+        </span>
       </header>
 
       {/* Command Bar */}
       <div className="px-6 py-4 border-b border-zinc-800/40 bg-black/20">
-        <CommandBar provider={provider} model={model} />
+        <CommandBar />
       </div>
 
       {/* Main 3-column layout */}
-      <div className="flex flex-1 divide-x divide-zinc-800/40 overflow-hidden" style={{ minHeight: 0 }}>
+      <div
+        className="flex flex-1 divide-x divide-zinc-800/40 overflow-hidden"
+        style={{ minHeight: 0 }}
+      >
         {/* Left: Agent Trace */}
         <div className="w-52 shrink-0 p-4 overflow-y-auto bg-black/10">
           <AgentTraceTree />

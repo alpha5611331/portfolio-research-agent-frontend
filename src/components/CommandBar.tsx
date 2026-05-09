@@ -1,5 +1,3 @@
-'use client'
-
 import { useState, useEffect, useRef } from 'react'
 import { useResearchStore } from '@/store/useResearchStore'
 import { submitResearch, openWebSocket } from '@/lib/api'
@@ -12,12 +10,7 @@ const PLACEHOLDERS = [
   'How do large language models reason about code?',
 ]
 
-interface CommandBarProps {
-  provider: string
-  model: string
-}
-
-export default function CommandBar({ provider, model }: CommandBarProps) {
+export default function CommandBar() {
   const { query, setQuery, startSession, addEvent, isRunning } = useResearchStore()
   const [placeholder, setPlaceholder] = useState(PLACEHOLDERS[0])
   const [error, setError] = useState<string | null>(null)
@@ -39,7 +32,7 @@ export default function CommandBar({ provider, model }: CommandBarProps) {
     wsRef.current?.close()
 
     try {
-      const { session_id } = await submitResearch(query, provider, model)
+      const { session_id } = await submitResearch(query)
       startSession(session_id, query)
 
       const ws = openWebSocket(session_id, (data) => {

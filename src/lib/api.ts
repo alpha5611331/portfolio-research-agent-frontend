@@ -1,11 +1,11 @@
-const API = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:8000'
-const WS = process.env.NEXT_PUBLIC_WS_URL ?? 'ws://localhost:8000'
+const API = import.meta.env.VITE_API_URL ?? 'http://localhost:8000'
+const WS = import.meta.env.VITE_WS_URL ?? 'ws://localhost:8000'
 
-export async function submitResearch(query: string, provider: string, model: string) {
+export async function submitResearch(query: string) {
   const res = await fetch(`${API}/api/research`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query, provider, model }),
+    body: JSON.stringify({ query }),
   })
   if (!res.ok) throw new Error('Failed to start research')
   return res.json() as Promise<{ session_id: string }>

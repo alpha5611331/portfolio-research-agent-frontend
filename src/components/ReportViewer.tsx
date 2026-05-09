@@ -1,16 +1,14 @@
-'use client'
-
 import { useResearchStore } from '@/store/useResearchStore'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { motion, AnimatePresence } from 'framer-motion'
 
 export default function ReportViewer() {
-  const { reportChunks, isRunning, events } = useResearchStore()
+  const { reportChunks, events } = useResearchStore()
   const report = reportChunks.join('')
   const isDone = events.some((e) => e.event === 'REPORT_DONE')
 
-  if (!report && !isRunning) {
+  if (!report) {
     return (
       <div className="flex items-center justify-center h-32">
         <p className="font-mono text-xs text-zinc-700">Report will appear here when ready...</p>
@@ -45,7 +43,7 @@ export default function ReportViewer() {
         <div className="prose prose-invert prose-sm max-w-none font-serif">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{report}</ReactMarkdown>
         </div>
-        {!isDone && report && (
+        {!isDone && (
           <span className="inline-block w-1.5 h-4 bg-indigo-500 animate-pulse ml-0.5" />
         )}
       </motion.div>

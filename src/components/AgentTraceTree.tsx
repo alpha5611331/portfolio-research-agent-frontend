@@ -1,5 +1,3 @@
-'use client'
-
 import { motion } from 'framer-motion'
 import { useResearchStore } from '@/store/useResearchStore'
 import type { AgentName, AgentStatus } from '@/types/events'

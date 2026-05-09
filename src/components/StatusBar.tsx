@@ -1,5 +1,3 @@
-'use client'
-
 import { useResearchStore } from '@/store/useResearchStore'
 
 export default function StatusBar() {

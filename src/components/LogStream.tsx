@@ -1,5 +1,3 @@
-'use client'
-
 import { useEffect, useRef } from 'react'
 import { format } from 'date-fns'
 import { useResearchStore } from '@/store/useResearchStore'
