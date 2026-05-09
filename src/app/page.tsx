@@ -47,7 +47,7 @@ export default function Page() {
         {/* Main 3-column layout */}
         <div className="flex min-h-0 flex-1 divide-x divide-zinc-800/40 overflow-hidden">
           {/* Left: Agent Trace */}
-          <div className="w-52 shrink-0 overflow-y-auto bg-black/10 p-4">
+          <div className="shrink-0 overflow-y-auto border-r border-indigo-900/30 bg-black/30 p-5" style={{ width: "17rem" }}>
             <AgentTraceTree />
           </div>
 
