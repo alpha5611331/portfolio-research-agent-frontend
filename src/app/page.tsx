@@ -90,7 +90,7 @@ export default function Page() {
 
         {/* Report Dialog */}
         <Dialog open={reportOpen} onOpenChange={setReportOpen}>
-          <DialogContent className="flex max-h-[85vh] w-[820px] max-w-[90vw] flex-col overflow-hidden p-0">
+          <DialogContent className="flex max-h-[85vh] w-205 max-w-[90vw] flex-col overflow-hidden p-0">
             <DialogHeader>
               <DialogTitle>Research Report</DialogTitle>
             </DialogHeader>
