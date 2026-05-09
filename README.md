@@ -1,6 +1,14 @@
 # Research Agent — Frontend
 
-React + Vite frontend for the [AI Research Command Center](https://github.com/alpha5611331/portfolio-research-agent-frontend).
+React + Vite frontend for the [AI Research Command Center](https://github.com/alpha5611331/portfolio-research-agent).
+
+## Repositories
+
+| | Link |
+|---|---|
+| Main | [portfolio-research-agent](https://github.com/alpha5611331/portfolio-research-agent) |
+| Backend | [portfolio-research-agent-backend](https://github.com/alpha5611331/portfolio-research-agent-backend) |
+| Frontend (this) | [portfolio-research-agent-frontend](https://github.com/alpha5611331/portfolio-research-agent-frontend) |
 
 ## Stack
 
