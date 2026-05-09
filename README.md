@@ -1,4 +1,4 @@
-# Research Agent — Frontend
+# Research Agent - Frontend
 
 React + Vite frontend for the [AI Research Command Center](https://github.com/alpha5611331/portfolio-research-agent).
 
